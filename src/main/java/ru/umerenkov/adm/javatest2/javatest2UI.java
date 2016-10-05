@@ -1,6 +1,5 @@
 package ru.umerenkov.adm.javatest2;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -18,13 +17,11 @@ import com.vaadin.shared.ui.datefield.Resolution;
 import com.vaadin.spring.annotation.EnableVaadin;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.server.SpringVaadinServlet;
-import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.ListSelect;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
@@ -40,6 +37,11 @@ import com.vaadin.ui.VerticalLayout;
 @SpringUI
 @Theme("mytheme")
 public class Javatest2UI extends UI {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4258386005946354904L;
 
 	@Override
 	protected void init(VaadinRequest vaadinRequest) {
@@ -85,7 +87,6 @@ public class Javatest2UI extends UI {
 		selectClient.setNullSelectionAllowed(false);
 		if (selectClient.getItemIds().size() > 0)
 			selectClient.setValue(selectClient.getItemIds().iterator().next());
-		//selectClient.setItemCaptionMode(ItemCaptionMode.ITEM);
 		selectClient.setLocale(new Locale("fr")); //No comma separators for thousands group
 		
 		
@@ -159,5 +160,10 @@ public class Javatest2UI extends UI {
 	@WebServlet(urlPatterns = "/*", name = "javatest2UIServlet", asyncSupported = true)
 	@VaadinServletConfiguration(ui = Javatest2UI.class, productionMode = false)
 	public static class Javatest2UIServlet extends SpringVaadinServlet {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -7068206948006677078L;
 	}
 }

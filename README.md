@@ -1,52 +1,32 @@
-javatest2
+Тестовое задание Java_2 для АДМ СИСТЕМЫ
 ==============
 
-Template for a simple Vaadin application that only requires a Servlet 3.0 container to run.
+ Задание выполено с использованием фреймворков Vaadin и MVC-Core. 
+ Для доступа к базе данных MySQL используются средства JDBC фреймворка Spring.
 
 
-Workflow
+База данных
 ========
 
-To compile the entire project, run "mvn install".
+Приложение подключается к базе данных MySql admtestdb и работает с таблицей traffic.
+Реквизиты для подключения находятся в файле WEB-INF/jdbc.properties
+Скрипт для создания базы находится в файле AdmTestDBScript.sql
+Скрипт для популяции базы даных тестовыми значениями находится в AdmTestDBPopulate.sql
 
-To run the application, run "mvn jetty:run" and open http://localhost:8080/ .
-
-To produce a deployable production mode WAR:
-- change productionMode to true in the servlet class configuration (nested in the UI class)
-- run "mvn clean package"
-- test the war file with "mvn jetty:run-war"
-
-Client-Side compilation
+Тестовые значения
 -------------------------
 
-The generated maven project is using an automatically generated widgetset by default. 
-When you add a dependency that needs client-side compilation, the maven plugin will 
-automatically generate it for you. Your own client-side customisations can be added into
-package "client".
+Скрипт популяции тестовыми значениями создает 100 записей для 5 пользователей и дат с 
+2016-10-06 00:00:00 по 2016-10-06 00:00:20
 
-Debugging client side code
-  - run "mvn vaadin:run-codeserver" on a separate console while the application is running
-  - activate Super Dev Mode in the debug window of the application
+Пользователь 100010001 uplink и downlink по 10 в течении всего времени.
+Пользователь 100010002 uplink 1024 и downlink 1024 в течении всего времени.
+Пользователь 100010002 uplink 1024 и downlink 2048 в течении всего времени.
+Пользователь 100010003 uplink и downlink увеличиваются равномерно с 1024 до 20480 с шагом 1024.
+Пользователь 100010005 uplink и downlink по 0 в течении всего времени.
 
-Developing a theme using the runtime compiler
--------------------------
 
-When developing the theme, Vaadin can be configured to compile the SASS based
-theme at runtime in the server. This way you can just modify the scss files in
-your IDE and reload the browser to see changes.
+Установка
+======================
 
-To use the runtime compilation, open pom.xml and comment out the compile-theme 
-goal from vaadin-maven-plugin configuration. To remove a possibly existing 
-pre-compiled theme, run "mvn clean package" once.
 
-When using the runtime compiler, running the application in the "run" mode 
-(rather than in "debug" mode) can speed up consecutive theme compilations
-significantly.
-
-It is highly recommended to disable runtime compilation for production WAR files.
-
-Using Vaadin pre-releases
--------------------------
-
-If Vaadin pre-releases are not enabled by default, use the Maven parameter
-"-P vaadin-prerelease" or change the activation default value of the profile in pom.xml .

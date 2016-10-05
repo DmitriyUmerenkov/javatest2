@@ -21,14 +21,6 @@ public class Dao {
 	@Autowired
 	public void setDataSource(DataSource jdbc) {
 		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
-
-		System.out.println("Datasource set");
-		try {
-			jdbc.getConnection();
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		;
 	}
 
 	public List<Long> getClientIDs() {
@@ -37,12 +29,8 @@ public class Dao {
 
 			@Override
 			public Long mapRow(ResultSet rs, int rowNum) throws SQLException {
-				// TODO Auto-generated method stub
-				System.out.println("Row procecced");
 				return rs.getLong("customer_id");
-
 			}
-
 		});
 	}
 
